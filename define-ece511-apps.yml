@@ -1,0 +1,44 @@
+##### Benchmark configs for ECE 511 Fall 2022 MP2
+
+#   execs:
+#       - <exec_name_1>:
+#           - args: <commandline arg_list 1> # Leave blank if no arguments
+#             <optional> accel-sim-mem: <xG>
+#           - args: <commandline arg_list 2>
+#           ...
+#       - <exec_name_2>
+#           ...
+#       ...
+# If you have a bunch of random benchmarks in random places, then a "suite" can be just one benchmark
+
+ece511-test:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/3.1/"
+    execs:
+        - nn-rodinia-3.1:   # 1.6MB
+            - args:  ./data/filelist_4 -r 5 -lat 30 -lng 90
+              accel-sim-mem: 2G
+
+ece511-rodinia-3.1:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/cuda/rodinia/3.1/"
+    execs:
+        - hotspot-rodinia-3.1:  # 535MB
+            - args:  1024 2 2 ./data/temp_1024 ./data/power_1024 output.out
+              accel-sim-mem: 1G
+
+ece511-parboil:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/parboil/"
+    execs:
+        - parboil-sgemm:    # 2.1GB
+            - args: -i ./data/medium/input/matrix1.txt,./data/medium/input/matrix2t.txt,./data/medium/input/matrix2t.txt -o matrix3.txt
+              accel-sim-mem: 8G
+
+ece511-polybench:
+    exec_dir: "$GPUAPPS_ROOT/bin/$CUDA_VERSION/release/"
+    data_dirs: "$GPUAPPS_ROOT/data_dirs/"
+    execs:
+        - polybench-2DConvolution:  # 803MB
+            - args: 
+              accel-sim-mem: 1G
