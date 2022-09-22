@@ -1,7 +1,6 @@
 # ECE 511 Fall 2022 MP2 Configs
 
 # Use TITANV as baseline config
-# override coalesce_arch to mimic newer architecture generations
 ECE511_TITANV:
     base_file: "$GPGPUSIM_ROOT/configs/tested-cfgs/SM7_TITANV/gpgpusim.config"
 
